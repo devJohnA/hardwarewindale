@@ -1,0 +1,444 @@
+<div class="product-tabs inner-bottom-xs modal-body wow fadeInUp">
+			<div class="row">
+				<div class="col-sm-2">
+
+				</div>
+				<div class="col-sm-8">
+
+					<div class="tab-content">
+
+						<div id="review" class="tab-pane in active">
+							<div class="product-tab">
+
+								<div class="product-reviews">
+									<h4 class="title">CustomerS Reviews</h4>
+									<?php
+									$qry = mysqli_query($con, "select * from productreviews where PROID='$PROID' ORDER BY `reviewDate` desc LIMIT 3");
+									while ($rvw = mysqli_fetch_array($qry)) {
+										?>
+
+										<div class="reviews" style="border: solid 1px #000; padding-left: 2% ">
+											<div class="review">
+												<div class="review-title">
+													<!--<span class="summary"><b><?php echo htmlentities($rvw['summary']); ?></b></span>--><span
+														class="date"><i class="fa fa-calendar"></i>
+														<span><?php echo htmlentities($rvw['reviewDate']); ?></span></span>
+												</div>
+
+												<div class="text"><i>"<?php echo htmlentities($rvw['review']); ?>"</i></div>
+												<div class="text"><b>Rate :</b> <?php
+												if ($rvw['quality'] == '1') { ?> <span class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span>
+													<?php } ?>	<?php
+														  if ($rvw['quality'] == '2') { ?> <span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span><span
+															class="fa fa-star"></span>
+													<?php } ?>	<?php
+														  if ($rvw['quality'] == '3') { ?> <span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span>
+													<?php } ?>	<?php
+														  if ($rvw['quality'] == '4') { ?> <span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span class="fa fa-star"></span>
+													<?php } ?>	<?php
+														  if ($rvw['quality'] == '5') { ?> <span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span>
+													<?php } ?>
+												</div>
+												<!--<div class="text"><b>Price :</b>  <?php echo htmlentities($rvw['price']); ?> Star</div>
+													<div class="text"><b>Value :</b>  <?php echo htmlentities($rvw['value']); ?> Star</div>-->
+												<div class="author m-t-15"><i class="fa fa-user"></i> <span
+														class="name"><?php echo htmlentities($rvw['name']); ?></span></div>
+											</div>
+
+										</div>
+									<?php } ?><!-- /.reviews -->
+								</div><!-- /.product-reviews -->
+
+								<?php if ($num > 3) {
+
+									echo '<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+              <a data-toggle="tab" href="#reviews">see all reviews</a>
+								
+							</ul><!-- /.nav-tabs #product-tabs -->';
+								} else {
+									echo '';
+								} ?>
+
+								<form action="try.php" role="form" class="cnt-form" name="review" method="post">
+
+
+									<div class="product-add-review">
+										<h4 class="title">Write your own review</h4>
+										<input type="hidden" name="PROID" value="<?php echo $cur->PROID; ?>">
+										<div class="review-table">
+											<div class="table-responsive">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>
+																<center><span class="fa fa-star checked"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span></center>
+															</th>
+															<th>
+																<center><span class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span></center>
+															</th>
+															<th>
+																<center><span class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star"></span><span
+																		class="fa fa-star"></span></center>
+															</th>
+															<th>
+																<center><span class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star"></span></center>
+															</th>
+															<th>
+																<center><span class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span><span
+																		class="fa fa-star checked"></span></center>
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<center><input type="radio" name="quality" class="radio"
+																		value="1"></center>
+															</td>
+															<td>
+																<center><input type="radio" name="quality" class="radio"
+																		value="2"></center>
+															</td>
+															<td>
+																<center><input type="radio" name="quality" class="radio"
+																		value="3"></center>
+															</td>
+															<td>
+																<center><input type="radio" name="quality" class="radio"
+																		value="4"></center>
+															</td>
+															<td>
+																<center><input type="radio" name="quality" class="radio"
+																		value="5" checked></center>
+															</td>
+														</tr>
+														<!--<tr>
+																<td class="cell-label">Price</td>
+																<td><input type="radio" name="price" class="radio" value="1"></td>
+																<td><input type="radio" name="price" class="radio" value="2"></td>
+																<td><input type="radio" name="price" class="radio" value="3"></td>
+																<td><input type="radio" name="price" class="radio" value="4"></td>
+																<td><input type="radio" name="price" class="radio" value="5"></td>
+															</tr>
+															<tr>
+																<td class="cell-label">Value</td>
+																<td><input type="radio" name="value" class="radio" value="1"></td>
+																<td><input type="radio" name="value" class="radio" value="2"></td>
+																<td><input type="radio" name="value" class="radio" value="3"></td>
+																<td><input type="radio" name="value" class="radio" value="4"></td>
+																<td><input type="radio" name="value" class="radio" value="5"></td>
+															</tr>-->
+													</tbody>
+												</table><!-- /.table .table-bordered -->
+											</div><!-- /.table-responsive -->
+										</div><!-- /.review-table -->
+
+										<div class="review-form">
+											<div class="form-container">
+
+
+												<div class="row">
+													<div class="col-sm-6">
+														<?php if (isset($_SESSION['CUSID'])) {
+
+															$mydb->setQuery("SELECT count(*) as 'num',SUMMARYID FROM  `tblsummary` 
+      WHERE     `CUSTOMERID`='" . $_SESSION['CUSID'] . "'  AND 
+      ORDEREDSTATS in ('Confirmed','Cancelled') AND HVIEW=0");
+															$res = $mydb->loadResultList();
+
+															foreach ($res as $key) {
+																$_SESSION['gcNotify'] = $key->num;
+															}
+															?>
+															<input type="hidden" name="name"
+																value="<?php echo $_SESSION['CUSNAME']; ?>">
+														<?php } ?>
+														<!--<div class="form-group">
+																	<label for="exampleInputSummary">Summary <span class="astk">*</span></label>
+																	<input type="text" class="form-control txt" id="exampleInputSummary" placeholder="" name="summary" required="required">
+																</div>--><!-- /.form-group -->
+
+														<label for="exampleInputReview">Review <span
+																class="astk">*</span></label>
+
+														<textarea class="form-control txt txt-review"
+															id="exampleInputReview" rows="4" placeholder=""
+															name="review" required="required"></textarea>
+														<!-- /.form-group -->
+
+
+														<div class="action text-right">
+															<?php
+
+
+
+															if (isset($_SESSION['CUSID'])) {
+
+																echo '<button type="submit"  name="submit" id="proceed" class="btn btn-pup pull-right">
+			Submit Review
+			
+			</button>';
+
+															} else {
+																echo '<a data-target="#login" data-toggle="modal" class="btn btn-pup btn-sm signup pull-right"  id="btn_close" data-dismiss="modal" >
+			  Submit Review
+			  
+			  </a>';
+															}
+
+
+
+
+															?>
+														</div><!-- /.action -->
+													</div>
+												</div><!-- /.row -->
+								</form><!-- /.cnt-form -->
+							</div><!-- /.form-container -->
+						</div><!-- /.review-form -->
+
+					</div><!-- /.product-add-review -->
+
+				</div><!-- /.product-tab -->
+			</div><!-- /.tab-pane -->
+
+
+			<div id="reviews" class="tab-pane">
+				<div class="product-tab">
+
+					<div class="product-reviews">
+						<h4 class="title">Customer Reviews</h4>
+						<?php
+						$qry = mysqli_query($con, "select * from productreviews where PROID='$PROID' ORDER BY `reviewDate` desc");
+						while ($rvw = mysqli_fetch_array($qry)) {
+							?>
+
+							<div class="reviews" style="border: solid 1px #000; padding-left: 2% ">
+								<div class="review">
+									<div class="review-title">
+										<!--<span class="summary"><b><?php echo htmlentities($rvw['summary']); ?></b></span>--><span
+											class="date"><i class="fa fa-calendar"></i>
+											<span><?php echo htmlentities($rvw['reviewDate']); ?></span></span></div>
+
+									<div class="text"><i>"<?php echo htmlentities($rvw['review']); ?>"</i></div>
+									<div class="text"><b>Rate :</b> <?php
+									if ($rvw['quality'] == '1') { ?> <span class="fa fa-star checked"></span><span
+												class="fa fa-star"></span><span class="fa fa-star"></span><span
+												class="fa fa-star"></span><span class="fa fa-star"></span>
+										<?php } ?>	<?php
+											  if ($rvw['quality'] == '2') { ?> <span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star"></span><span
+												class="fa fa-star"></span><span class="fa fa-star"></span>
+										<?php } ?>	<?php
+											  if ($rvw['quality'] == '3') { ?> <span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span
+												class="fa fa-star"></span><span class="fa fa-star"></span>
+										<?php } ?>	<?php
+											  if ($rvw['quality'] == '4') { ?> <span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star"></span>
+										<?php } ?>	<?php
+											  if ($rvw['quality'] == '5') { ?> <span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span
+												class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+										<?php } ?>
+									</div>
+									<!--<div class="text"><b>Price :</b>  <?php echo htmlentities($rvw['price']); ?> Star</div>
+													<div class="text"><b>Value :</b>  <?php echo htmlentities($rvw['value']); ?> Star</div>-->
+									<div class="author m-t-15"><i class="fa fa-user"></i> <span
+											class="name"><?php echo htmlentities($rvw['name']); ?></span></div>
+								</div>
+
+							</div>
+						<?php } ?><!-- /.reviews -->
+					</div><!-- /.product-reviews -->
+
+					<form action="try.php" role="form" class="cnt-form" name="review" method="post">
+
+
+						<div class="product-add-review">
+							<h4 class="title">Write your own review</h4>
+							<div class="review-table">
+								<input type="hidden" name="PROID" value="<?php echo $cur->PROID; ?>">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+
+												<th>
+													<center><span class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span
+															class="fa fa-star"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span>
+													</center>
+												</th>
+												<th>
+													<center><span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span>
+													</center>
+												</th>
+												<th>
+													<center><span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star"></span><span class="fa fa-star"></span>
+													</center>
+												</th>
+												<th>
+													<center><span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star"></span></center>
+												</th>
+												<th>
+													<center><span class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span><span
+															class="fa fa-star checked"></span></center>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+
+												<td>
+													<center><input type="radio" name="quality" class="radio" value="1">
+													</center>
+												</td>
+												<td>
+													<center><input type="radio" name="quality" class="radio" value="2">
+													</center>
+												</td>
+												<td>
+													<center><input type="radio" name="quality" class="radio" value="3">
+													</center>
+												</td>
+												<td>
+													<center><input type="radio" name="quality" class="radio" value="4">
+													</center>
+												</td>
+												<td>
+													<center><input type="radio" name="quality" class="radio" value="5"
+															checked></center>
+												</td>
+											</tr>
+											<!--<tr>
+																<td class="cell-label">Price</td>
+																<td><input type="radio" name="price" class="radio" value="1"></td>
+																<td><input type="radio" name="price" class="radio" value="2"></td>
+																<td><input type="radio" name="price" class="radio" value="3"></td>
+																<td><input type="radio" name="price" class="radio" value="4"></td>
+																<td><input type="radio" name="price" class="radio" value="5"></td>
+															</tr>
+															<tr>
+																<td class="cell-label">Value</td>
+																<td><input type="radio" name="value" class="radio" value="1"></td>
+																<td><input type="radio" name="value" class="radio" value="2"></td>
+																<td><input type="radio" name="value" class="radio" value="3"></td>
+																<td><input type="radio" name="value" class="radio" value="4"></td>
+																<td><input type="radio" name="value" class="radio" value="5"></td>
+															</tr>-->
+										</tbody>
+									</table><!-- /.table .table-bordered -->
+								</div><!-- /.table-responsive -->
+							</div><!-- /.review-table -->
+
+							<div class="review-form">
+								<div class="form-container">
+
+
+									<div class="row">
+										<div class="col-sm-6">
+											<?php if (isset($_SESSION['CUSID'])) {
+
+												$mydb->setQuery("SELECT count(*) as 'num',SUMMARYID FROM  `tblsummary` 
+      WHERE     `CUSTOMERID`='" . $_SESSION['CUSID'] . "'  AND 
+      ORDEREDSTATS in ('Confirmed','Cancelled') AND HVIEW=0");
+												$res = $mydb->loadResultList();
+
+												foreach ($res as $key) {
+													$_SESSION['gcNotify'] = $key->num;
+												}
+												?>
+												<input type="hidden" name="name"
+													value="<?php echo $_SESSION['CUSNAME']; ?>">
+											<?php } ?>
+											<!--<div class="form-group">
+																	<label for="exampleInputSummary">Summary <span class="astk">*</span></label>
+																	<input type="text" class="form-control txt" id="exampleInputSummary" placeholder="" name="summary" required="required">
+																</div>--><!-- /.form-group -->
+
+											<label for="exampleInputReview">Review <span class="astk">*</span></label>
+
+											<textarea class="form-control txt txt-review" id="exampleInputReview"
+												rows="4" placeholder="" name="review" required="required"></textarea>
+											<!-- /.form-group -->
+
+
+											<div class="action text-right">
+												<?php
+
+
+
+												if (isset($_SESSION['CUSID'])) {
+
+													echo '<button type="submit"  name="submit" id="proceed" class="btn btn-pup pull-right">
+			Submit Review
+			
+			</button>';
+
+												} else {
+													echo '<a data-target="#login" data-toggle="modal" class="btn btn-pup btn-sm signup pull-right" id="btn_close" data-dismiss="modal">
+			  Submit Review
+			  
+			  </a>';
+												}
+
+
+
+
+												?>
+											</div><!-- /.action -->
+										</div>
+									</div><!-- /.row -->
+					</form><!-- /.cnt-form -->
+				</div><!-- /.form-container -->
+			</div><!-- /.review-form -->
+
+		</div> /.product-add-review -->
