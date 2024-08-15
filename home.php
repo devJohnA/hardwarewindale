@@ -343,7 +343,7 @@
                         <img src="img/quality-control.png" alt="Feature 2 Icon" class="img-icon" width="80" height="70">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Quality and Durability</h5>
+                        <h5 class="card-title">Quality and Durabilitys</h5>
                         <p class="card-text">We pride ourselves on offering high-quality products that are durable and reliable, ensuring your projects are built to last.</p>
                     </div>
                 </div>
