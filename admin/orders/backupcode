@@ -1,0 +1,1 @@
+ <a href="controller.php?action=edit&id=' . $result->ORDEREDNUM . '&customerid=' . $result->CUSTOMERID . '&actions=cancel" class="btn btn-danger btn-sm">Cancel</a>
