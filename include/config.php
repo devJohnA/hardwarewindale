@@ -1,8 +1,8 @@
 <?php
 defined('server') ? null : define("server", "localhost");
-defined('user') ? null : define("user", "root") ;
-defined('pass') ? null : define("pass", "");
-defined('database_name') ? null : define("database_name", "dried") ;
+defined('user') ? null : define("user", "u510162695_dried") ;
+defined('pass') ? null : define("pass", "1Dried_password");
+defined('database_name') ? null : define("database_name", "u510162695_dried") ;
 
 $this_file = str_replace('\\', '/', __File__) ;
 $doc_root = $_SERVER['DOCUMENT_ROOT'];
