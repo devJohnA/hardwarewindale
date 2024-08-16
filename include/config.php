@@ -1,5 +1,5 @@
 <?php
-defined('server') ? null : define("server", "localhost");
+defined('server') ? null : define("server", "127.0.0.1");
 defined('user') ? null : define("user", "u510162695_dried") ;
 defined('pass') ? null : define("pass", "1Dried_password");
 defined('database_name') ? null : define("database_name", "u510162695_dried") ;
